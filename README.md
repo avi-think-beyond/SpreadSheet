@@ -3,3 +3,7 @@ This project is a dynamic spreadsheet tool designed to replicate the core featur
 
 
 ![Screenshot 2024-09-12 162925](https://github.com/user-attachments/assets/2b155475-f5e9-4c35-a86f-fe5844bfbcac)
+
+
+*important:
+id column must require.
