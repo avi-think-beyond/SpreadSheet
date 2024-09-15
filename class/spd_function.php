@@ -40,8 +40,8 @@ class spd_main extends config
 			$cols    = $cols; #columns
 			$cause   = $condition; #condition
 			$headerArr = $filterdata = $act_arr = array('');
-			$dir = $roottype.'spd_version_4_demo';
-			$tbl_header = $dir."/src/header/new_header_{$tb_name}.json";
+			// $dir = $roottype.'spd_version_4_demo';
+			$tbl_header = "../src/header/new_header_{$tb_name}.json";
 			if(file_exists($tbl_header))
 			{
 				 		$header_handle          = fopen($tbl_header, "r"); // open the file.            
@@ -69,7 +69,7 @@ class spd_main extends config
 
 			if(!empty($tb_name))
 			{
-				$qry .= " {$cols}, UID as checkers FROM {$tb_name }". $cond;
+				$qry .= " {$cols}, ID as checkers FROM {$tb_name }". $cond;
 					
 			}
 			else
@@ -79,7 +79,7 @@ class spd_main extends config
 			// End query creation.				
  			// echo $qry;
 			// query execute
-			$RESULT 	= 	mysqli_query($conn, $qry);
+			$RESULT 	= 	mysqli_query($conn, $qry) or dir('error in query: '. $qry);
 			// fatch data from executed query
 			while($row	=	mysqli_fetch_assoc($RESULT))
 			{
@@ -91,10 +91,12 @@ class spd_main extends config
 			$arr_records = $FilterArr = $my_array = array(); #assign array variable
 		        if(!empty($arr)) //check data is not empty
 		        {	           
-		            if(file_exists($dir."/tmp_filter/".$tb_name."_"."Filters.json"))
+		            // if(file_exists($dir."/tmp_filter/".$tb_name."_"."Filters.json"))
+		            if(file_exists("../tmp_filter/".$tb_name."_"."Filters.json"))
 		            {
 		                // Get filter data from the file with postpend named "spreadsheetFilter" and decode the data in array from json if file exist
-		                $handle         = fopen($dir."/tmp_filter/".$tb_name."_"."Filters.json", "r"); // open the file.            
+		                // $handle         = fopen($dir."/tmp_filter/".$tb_name."_"."Filters.json", "r"); // open the file.            
+		                $handle         = fopen("tmp_filter/".$tb_name."_"."Filters.json", "r"); // open the file.            
 		                $LocalDataArr   = fgets($handle);
 		                $FilterArr      = json_decode($LocalDataArr, true);
 		                $filterdata 	= array_keys($FilterArr);
@@ -135,7 +137,8 @@ class spd_main extends config
 		        	}
 
 
-        $src2     = $dir."/src/actions/spd_action_{$tb_name}.json"; // saved action
+        // $src2     = $dir."/src/actions/spd_action_{$tb_name}.json"; // saved action
+        $src2     = "../src/actions/spd_action_{$tb_name}.json"; // saved action
         if(file_exists($src2))
         {
         	$handle2        = fopen($src2, "r"); // open the file.            
@@ -286,7 +289,7 @@ class spd_main extends config
 		@author 		: Ashish Vishwakarma
 		@param 			: $old_data,$upd_data, $cols, $tbl_name, $validator
 		@return			: create files
-		@Description	: This function update single row column data according to using uniqe id('UID') an column names				  
+		@Description	: This function update single row column data according to using uniqe id('ID') an column names				  
 		@created Date	: 30-Jul-2019
 	*/ 
 	public function UpdateColData($old_data,$upd_data, $cols, $tbl_name, $validator)
@@ -300,7 +303,7 @@ class spd_main extends config
 
 			$filter_file = 'tmp_filter/'.$tbl_name.'_Filters.json'; #update filter file data
 
-				$qry 		= "UPDATE {$tb_name} SET $col='".$data."', DATE_MODIFIED=now() WHERE UID='".$cond."'"; 
+				$qry 		= "UPDATE {$tb_name} SET $col='".$data."', DATE_MODIFIED=now() WHERE ID='".$cond."'"; 
 				// query execute
 				$RESULT 	= 	mysqli_query($conn, $qry);
 				$upd=0;
@@ -362,13 +365,14 @@ class spd_main extends config
 		//$conn 	 	  = $this->connect();//create connection
 		$tb_name      = $FILENAME;#table name
 		$cols 		  = $cols;#columns		
-		// $LocalDataArr =  array();	
+		$LocalDataArr =  array();	
 		// echo $FIELD_NAME;
-		$dir = '../spd_version_4_demo/'; 
-
-		$filter_filename 	= $dir.'tmp_filter/'.$tb_name."_"."Filters.json";//check filter is used or not	
-
-
+		$dir = './'; 
+		$filter_directory = 'tmp_filter';
+		if (!file_exists($filter_directory)) {
+			mkdir($filter_directory, 0777, true); // Create the directory with full permissions
+		}
+		$filter_filename 	= $dir . 'tmp_filter/' . $tb_name . "_" . "Filters.json"; //check filter is used or not	
 		if(!empty($FILENAME) && !empty($FIELD_NAME))
 		{	
 			if($FIELD_NAME!='rem_fltr')
@@ -394,7 +398,7 @@ class spd_main extends config
 				unlink($filter_filename);		 // remove the file from the location		
 			}
 			//echo "<pre>"; print_r($LocalDataArr);
-			$file = fopen($filter_filename, 'w') or die("Unable to open file!");
+			$file = fopen($filter_filename, 'w') or die("Unable to open file!:". $filter_filename);
 			fwrite($file, json_encode($LocalDataArr)); // write the json into file
 			chmod($filter_filename,0755); // permission grant
 			fclose($file);
@@ -407,7 +411,7 @@ class spd_main extends config
 				unlink($filter_filename);
 			}
 
-			$readdata = $this->readmaindata($tb_name,$cols,$cause,$dir_scr='../');
+			$readdata = $this->readmaindata($tb_name,$cols,$cause,$dir_scr='');
 			// print_r($readdata);
 
 		}
@@ -502,7 +506,7 @@ class spd_main extends config
 	*/ 
 	function deleteFilter($filename,$folder)
 	{
-		$dir ="../spd_version_4_demo/src/filters/".$folder."/".$filename.".json"; // path of deleting file.
+		$dir ="spd_version_4_demo/src/filters/".$folder."/".$filename.".json"; // path of deleting file.
 
 			if (!unlink($dir)) // this php funtion remove file 
 			{
