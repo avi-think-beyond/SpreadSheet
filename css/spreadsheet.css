@@ -1,0 +1,130 @@
+th, td{
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+}
+.dropdown-menu1>li>a {
+    display: block;
+    padding: 5px 0px;
+    clear: both;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+
+.inputforfilter {
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow: none;
+    border: 1px solid #b1aeae;
+    font-weight:normal;
+    width: 100%;
+}
+
+.dropdown-li
+{
+  /*padding: t0px r0px b l;*/
+  padding: 2px 5px 5px 10px;
+}
+ 
+label.forfiltercheckbox {
+    display: list-item;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+    .bs-example{
+        margin: 20px;
+    }
+    .dropdown-menu1
+    {
+        max-width: 250px !important;
+        min-width: 250px !important;
+        font-size: 12px;
+        left: -228px;
+		text-align:left;
+    }
+    hr
+    {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        border-top: 1px solid #c5c5c5;
+    }
+
+    .searchfilter
+    {
+        border-radius: 2px;
+        padding: 5px;
+        box-shadow: none;
+        border: 1px solid #C5C5C5;
+        font-weight: normal;
+        width: 100%;
+    }
+    .dropdown-menu1 > .open
+    {
+        -webkit-transition: opacity 3s ease-in-out;
+        -moz-transition: opacity 3s ease-in-out;
+        -ms-transition: opacity 3s ease-in-out;
+        -o-transition: opacity 3s ease-in-out;
+        opacity: 1;
+    }
+.exceltn
+{
+    width: 70px;
+}
+.checklabel
+{
+    font-weight:normal;
+}
+input[type="checkbox"].excelcheck
+{
+    vertical-align: middle;
+    margin: 0px;
+    box-shadow: none;
+    margin-right: 15px;
+}
+
+
+.theadcolor
+{
+    background-color: #11449c;
+    /*color: white;*/
+}
+.theadtxtcolor
+{
+    color: white;
+}
+.fa-caret-down
+{
+    color: white;
+    font-size: 18px;
+}
+
+table.dataTable tbody td
+{
+    padding: 1px 5px;
+    font-size: 12px;
+}
+table.dataTable thead th
+{
+    padding: 2px 10px;
+    border-bottom: 1px solid #111;
+    font-size: 12px;
+    text-align: center;
+}
+
+.spantexthighlight
+{
+	color :#707070;
+}
+.check-with-label:checked + .spantexthighlight {
+  color:black;
+}
+
+table.dataTable.display tbody td
+{
+    border-top: 0px solid white;
+}
+
+
