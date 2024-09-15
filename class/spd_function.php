@@ -1,6 +1,6 @@
 <?php /*
 ====================================================================================================
-Application Name: SCPL tool library
+Application Name: tool library
 ====================================================================================================
           Module: phpSpreadsheet
        File Name: spd_function.php
