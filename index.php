@@ -25,10 +25,10 @@ Initial Version.
 include_once("class/spd_function.php");#main class file of php_spreadsheet
 
 // $tb_name   ='purchase_inv_master'; #define table name
-$tb_name   ='login_master'; #define table name
+$tb_name   = 'authors'; #define table name
 //$cols      ='DISTRIBUTORNAME, SAPCODE, REGISTERED_ADDRESS, CITY, STATE, ZONE, BRANCH, PINCODE, CONTACT_NO, PANNO, DIST_EMAIL, GST';#colummns names with "," separate
 $cols      ='';
-$cond      ="password_updated_on is null"; #query condition exmple:- name!="abc" and surname = "xyz" 
+$cond      =""; #query condition exmple:- name!="abc" and surname = "xyz" 
 // $cond      ="INVOICE_TYPE = 6"; #query condition exmple:- name!="abc" and surname = "xyz" 
 
 $arr_records = $spd_obj->readmaindata($tb_name, $cols, $cond); #main function read source table data

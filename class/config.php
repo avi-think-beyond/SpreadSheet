@@ -21,11 +21,11 @@ Initial Version.
 */
 class config{ 	// Database Connection
 
-	public $conn;									// Server Name
-	private $servername 	= "localhost";			// Database Name
-	private $db_name 		= "rubic";	// Username	
-	private $username 		= "root";	// Password
-	private $password 		= "";
+	public $conn;									
+	private $servername 	= "localhost";			// Server Name
+	private $db_name 		= "spreadsheet";	// Database Name
+	private $username 		= "root";	// Username	
+	private $password 		= ""; // Password
 	
 	public function connect($conn_type = 'MYSQLI'){		
 		if(strtoupper($conn_type) == 'PDO'){
